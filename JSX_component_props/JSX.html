@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSX</title>
+
+    <!-- CDN react v8 -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+
+    <!-- reactDOM làm việc với DOM render UI -->
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+    <!-- thư viện bable chuyển đổi cú pháp JSX sang react element -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script> 
+<body>
+
+   <div id="root"></div>
+
+   <script type="text/babel"> // type="text/babel" thư viện bale sẽ quét các tag script có "type" này để "dịch từ JSX sang react element "
+        const list = [
+            {
+                name:"HTML/CSS"
+            },
+            {
+                name:"web design"
+            },
+            {
+                name:"React"
+            },
+        ]
+      
+        const ul = <ul> 
+            {   // đối với cú pháp JSX thì cặp ngoặc {} để nhúng biểu thức javaScript , trường hợp có 2 ngoặc thì cặp "ngoặc trong" nhận vào phải là 1 đối tượng obj " {{obj}} "
+                list.map(function(e){
+                    return <li>{e.name}</li>
+                })
+            }
+            <button onClick={() => alert("ok")}>
+                Like
+            </button>
+        </ul>;
+        const root = ReactDOM.createRoot(document.getElementById("root"))
+       
+        // trường hợp {{}} viết code JSX cùng code HTML 
+        const title = 'Fullstack';
+        const headingElement = <h1 style={{ color: 'red' }}>{title}</h1>; // Trong JSX thuộc tính "style" phải nhận giá trị là 1 "obj"
+
+        // render UI
+        root.render(ul)
+   </script>
+</body>
+</html>
